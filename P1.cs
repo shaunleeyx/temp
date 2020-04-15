@@ -1,8 +1,26 @@
+/* 
+ * Author:Shaun Lee
+ * Driver Overview:
+ */
 using System;
 class MainClass 
 {
         public static void Main(string[] args)
         {
-                Console.WriteLine("hello");
+                Sensor myObj = new Sensor();
+                Console.WriteLine(myObj.isValid());
+                Console.WriteLine(myObj.isValid());
+                Console.WriteLine(myObj.isValid());
+                Console.WriteLine(myObj.isValid());
+                Console.WriteLine(myObj.isValid());
+                Console.WriteLine(myObj.isValid());
+                Console.WriteLine(myObj.isValid());
+                Console.WriteLine(myObj.isValid());
+                Console.WriteLine(myObj.isValid());
+                Console.WriteLine(myObj.isValid());
+                Console.WriteLine(myObj.isValid());
+                myObj.Recharge();
+                Console.WriteLine(myObj.isValid());
+
         }
 }
