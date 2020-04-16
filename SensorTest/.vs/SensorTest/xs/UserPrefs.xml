@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{2D1DB9FA-401D-4948-9B1E-9E7444EC69CE}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SensorTest/UnitTest1.cs">
+    <Files>
+      <File FileName="SensorTest/UnitTest1.cs" Line="19" Column="6" />
+      <File FileName="SensorTest/Sensor.cs" Line="4" Column="20" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SensorTest" expanded="True">
+            <Node name="SensorTest" expanded="True">
+              <Node name="UnitTest1.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="SensorTest" expanded="True">
+            <Node name="SensorTest" expanded="True">
+              <Node name="SensorTest" expanded="True">
+                <Node name="CheckIfBatterycanBeDischarged" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.SensorTest PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
