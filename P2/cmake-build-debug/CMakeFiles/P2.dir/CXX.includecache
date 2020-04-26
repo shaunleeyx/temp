@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/shaunlee/Documents/GitHub/temp/P2/main.cpp
+iostream
+-
+sensor.h
+/Users/shaunlee/Documents/GitHub/temp/P2/sensor.h
+robot.h
+/Users/shaunlee/Documents/GitHub/temp/P2/robot.h
+string
+-
+
+/Users/shaunlee/Documents/GitHub/temp/P2/robot.cpp
+robot.h
+/Users/shaunlee/Documents/GitHub/temp/P2/robot.h
+iostream
+-
+
+/Users/shaunlee/Documents/GitHub/temp/P2/robot.h
+string
+-
+fstream
+-
+
+/Users/shaunlee/Documents/GitHub/temp/P2/sensor.h
+
