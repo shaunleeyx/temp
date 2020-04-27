@@ -11,7 +11,7 @@ public:
     double getdrainRate();
     sensor(double);
     void drain();
-    bool isValid();
+    bool isValid(int);
     void Recharge();
     double getBattery();
 private:

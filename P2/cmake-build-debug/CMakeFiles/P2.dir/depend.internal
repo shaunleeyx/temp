@@ -5,12 +5,15 @@ CMakeFiles/P2.dir/actuator.cpp.o
  /Users/shaunlee/Documents/GitHub/temp/P2/actuator.cpp
  /Users/shaunlee/Documents/GitHub/temp/P2/actuator.h
 CMakeFiles/P2.dir/main.cpp.o
+ /Users/shaunlee/Documents/GitHub/temp/P2/actuator.h
  /Users/shaunlee/Documents/GitHub/temp/P2/main.cpp
  /Users/shaunlee/Documents/GitHub/temp/P2/robot.h
  /Users/shaunlee/Documents/GitHub/temp/P2/sensor.h
 CMakeFiles/P2.dir/robot.cpp.o
+ /Users/shaunlee/Documents/GitHub/temp/P2/actuator.h
  /Users/shaunlee/Documents/GitHub/temp/P2/robot.cpp
  /Users/shaunlee/Documents/GitHub/temp/P2/robot.h
+ /Users/shaunlee/Documents/GitHub/temp/P2/sensor.h
 CMakeFiles/P2.dir/sensor.cpp.o
  /Users/shaunlee/Documents/GitHub/temp/P2/sensor.cpp
  /Users/shaunlee/Documents/GitHub/temp/P2/sensor.h

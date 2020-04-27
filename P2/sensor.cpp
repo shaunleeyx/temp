@@ -26,13 +26,13 @@ void sensor::drain()
     if(battery < 0) battery = 0;
 }
 
-bool sensor::isValid()
+bool sensor::isValid(int digit)
 {
     checkBattery();
     if(state)
     {
         drain();
-        return true;
+        return (digit == 1);
     }
     return false;
 }

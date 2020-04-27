@@ -4,12 +4,15 @@
 CMakeFiles/P2.dir/actuator.cpp.o: ../actuator.cpp
 CMakeFiles/P2.dir/actuator.cpp.o: ../actuator.h
 
+CMakeFiles/P2.dir/main.cpp.o: ../actuator.h
 CMakeFiles/P2.dir/main.cpp.o: ../main.cpp
 CMakeFiles/P2.dir/main.cpp.o: ../robot.h
 CMakeFiles/P2.dir/main.cpp.o: ../sensor.h
 
+CMakeFiles/P2.dir/robot.cpp.o: ../actuator.h
 CMakeFiles/P2.dir/robot.cpp.o: ../robot.cpp
 CMakeFiles/P2.dir/robot.cpp.o: ../robot.h
+CMakeFiles/P2.dir/robot.cpp.o: ../sensor.h
 
 CMakeFiles/P2.dir/sensor.cpp.o: ../sensor.cpp
 CMakeFiles/P2.dir/sensor.cpp.o: ../sensor.h

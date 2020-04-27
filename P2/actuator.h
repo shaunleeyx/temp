@@ -4,15 +4,19 @@
 
 #ifndef P2_ACTUATOR_H
 #define P2_ACTUATOR_H
-
+#include <string>
 
 class actuator {
-public:
-    void MoveForward();
-    void isPoweredUp();
 private:
+
+    static const int column = 11;
+    static const int row = 11;
     bool state;
-    enum Direction {up,down,left,right};
+    int Direction;
+public:
+    void MoveForward(int&,int&);
+    bool isPoweredUp();
+    actuator(int dir);
 };
 
 

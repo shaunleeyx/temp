@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/Users/shaunlee/Documents/GitHub/temp/P2/actuator.h
+string
+-
+
 /Users/shaunlee/Documents/GitHub/temp/P2/main.cpp
 iostream
 -
@@ -16,17 +20,15 @@ robot.h
 string
 -
 
-/Users/shaunlee/Documents/GitHub/temp/P2/robot.cpp
-robot.h
-/Users/shaunlee/Documents/GitHub/temp/P2/robot.h
-iostream
--
-
 /Users/shaunlee/Documents/GitHub/temp/P2/robot.h
 string
 -
 fstream
 -
+sensor.h
+/Users/shaunlee/Documents/GitHub/temp/P2/sensor.h
+actuator.h
+/Users/shaunlee/Documents/GitHub/temp/P2/actuator.h
 
 /Users/shaunlee/Documents/GitHub/temp/P2/sensor.h
 
