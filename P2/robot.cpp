@@ -32,12 +32,16 @@ robot::robot(std::string str, double drainRate)
     }
 }
 
-void robot::printCoord()
+int robot::getRow()
 {
-    std::cout << "amkldfmklamdsfklamdsklf" << std::endl;
-   std::cout << rCoord << std::endl;
-   std:: cout << cCoord << std::endl;
+    return rCoord;
 }
+
+int robot::getColumn()
+{
+    return cCoord;
+}
+
 
 void robot::Move(int Dir)
 {
@@ -82,22 +86,18 @@ void robot::MoveOne(int Dir)
     switch(Dir){
         case 0:
             sensed = grid[rCoord-1][cCoord];
-            std::cout << sObj->isValid(sensed) << std::endl;
             if(sObj->isValid(sensed)) nAct->MoveForward(rCoord,cCoord);
             break;
         case 1:
             sensed = grid[rCoord+1][cCoord];
-            std::cout << sObj->isValid(sensed) << std::endl;
             if(sObj->isValid(sensed)) sAct->MoveForward(rCoord,cCoord);
             break;
         case 2:
             sensed = grid[rCoord][cCoord+1];
-            std::cout << sObj->isValid(sensed) << std::endl;
             if(sObj->isValid(sensed)) eAct->MoveForward(rCoord,cCoord);
             break;
         case 3:
             sensed = grid[rCoord][cCoord-1];
-            std::cout << sObj->isValid(sensed) << std::endl;
             if(sObj->isValid(sensed)) wAct->MoveForward(rCoord,cCoord);
             break;
         default:
@@ -120,7 +120,6 @@ void robot::Recharge()
 {
     sObj->Recharge();
 }
-//Document this
 
 
 robot::~robot()
@@ -213,3 +212,12 @@ void robot::swap(T &lhs, T &rhs) {
     lhs = rhs;
     rhs = temp;
 }
+
+/*Implementation invariant:
+ * echos sensor's isvalid
+ * echos actuator's moveforward() in move and moveone
+ * copies the file to a 2d array and row and column coordinates are the same
+ * move semantics uses swap for both = and the default move constructor
+ * MoveOne uses sensor and detects for walls make sure the robot doesn't overlap with the wall
+ * Move does the same thing but uses a while loop that invokes moveForward from the actuator until theres a wall in front
+ */

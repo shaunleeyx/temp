@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/Users/shaunlee/Documents/GitHub/temp/P2/actuator.cpp
+actuator.h
+/Users/shaunlee/Documents/GitHub/temp/P2/actuator.h
+
 /Users/shaunlee/Documents/GitHub/temp/P2/actuator.h
 string
 -
@@ -19,6 +23,20 @@ robot.h
 /Users/shaunlee/Documents/GitHub/temp/P2/robot.h
 string
 -
+queue
+-
+memory
+-
+ctime
+-
+
+/Users/shaunlee/Documents/GitHub/temp/P2/robot.cpp
+robot.h
+/Users/shaunlee/Documents/GitHub/temp/P2/robot.h
+iostream
+-
+string
+-
 
 /Users/shaunlee/Documents/GitHub/temp/P2/robot.h
 string
@@ -29,6 +47,14 @@ sensor.h
 /Users/shaunlee/Documents/GitHub/temp/P2/sensor.h
 actuator.h
 /Users/shaunlee/Documents/GitHub/temp/P2/actuator.h
+
+/Users/shaunlee/Documents/GitHub/temp/P2/sensor.cpp
+thread
+-
+chrono
+-
+sensor.h
+/Users/shaunlee/Documents/GitHub/temp/P2/sensor.h
 
 /Users/shaunlee/Documents/GitHub/temp/P2/sensor.h
 

@@ -34,3 +34,9 @@ void actuator::MoveForward(int& rCoord,int& cCoord)
 bool actuator::isPoweredUp(){
     return state;
 }
+/*Implementation invariant:
+ * MoveForward changes the row coordinate and the column coordinate from the robot through reference
+ * Direction of actuator is assigned throguh the constructor of actuator's argument
+ * actuator is always true no matter what
+ * isPoweredUp returns the state of the object for actuator
+ */
