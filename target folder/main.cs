@@ -12,10 +12,11 @@ class MainClass
             // robot a = new robot("/Users/shaunlee/Documents/GitHub/temp/P3/grid.txt",1);
         
             string text = System.IO.File.ReadAllText(@"grid.txt");
-
-            System.Console.WriteLine("Contents of test.txt = {0}", text);
-
-            Console.ReadLine();
+            string[] words = text.Split(new string[] {"\\n"},StringSplitOptions.None);  
+            for(int i = 0; i < words.Length; i++)
+            {
+                Console.Write(words[i] + " ");
+            }
 
 
         }
