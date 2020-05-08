@@ -19,7 +19,7 @@
  **/
 
 
-
+using System.Threading;
 
 public class sensor
 {
@@ -79,7 +79,7 @@ public class sensor
 	   */
 	public void Recharge()
 	{
-		std::this_thread.sleep_for(std::chrono.milliseconds(200));
+		Thread.Sleep(200);
 		battery = 100;
 		state = true;
 	}
