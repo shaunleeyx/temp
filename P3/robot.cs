@@ -52,7 +52,7 @@ public class robot
 	private String filename;
 	protected int[,] grid;
 	private const int SIZE = 11;
-	private bool state;
+	private bool state; 
 	/*
 	 *Precondition:string and double
 	 *Postcondition:filename is str and 2d array copies the file,double sets the drainRate for the battery for the sensor
