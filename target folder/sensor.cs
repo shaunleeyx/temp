@@ -23,40 +23,18 @@ using System.Threading;
 
 public class sensor
 {
-	private int[,] grid;
-	orientation orientationState;
-	private enum orientation
-        {
-            Up,
-            Down,
-            Left,
-            Right
-        }
 
-	public sensor(double input,int dir,int[,] grid)
+	//TODO don't forget to remove this function
+	public double getdrainRate()
 	{
-		this.grid = grid;
-		switch(dir)
-		{
-			case 0:
-				orientationState = orientation.Up; 
-				break;
-			case 1:
-				orientationState = orientation.Down;
-				break;
-			case 2:
-				orientationState = orientation.Right;
-				break;
-			case 3:
-				orientationState = orientation.Left;
-				break;
-			default:
-				orientationState = orientation.Up; 
-				break;
-		}
+		return drainRate;
+	}
+
+	public sensor(double input)
+	{
 		if (input > 100 || input < 0)
 		{
-			input = 1; 
+			input = 1; //document this design decision
 		}
 		battery = 100;
 		drainRate = input;
@@ -84,33 +62,13 @@ public class sensor
 	*Precondition:None
 	*Postcondition: returns true or false based on the battery
 	 */
-	public bool isValid(int rCoord,int cCoord)
+	public bool isValid(int digit)
 	{
 		checkBattery();
 		if (state)
 		{
 			drain();
-			if(orientationState == orientation.Up)
-			{
-				return (grid[rCoord -1,cCoord] == 1);
-			}
-			else if (orientationState == orientation.Down)
-			{
-				return (grid[rCoord +1,cCoord] == 1); 
-			}
-			else if (orientationState == orientation.Right)
-			{
-				return (grid[rCoord,cCoord + 1] == 1); 
-			}
-			else if (orientationState == orientation.Left)
-			{
-				return (grid[rCoord,cCoord -1] == 1); 
-			} 
-			else
-			{
-				return false;
-			}
-
+			return (digit == 1);
 		}
 		return false;
 	}
@@ -155,5 +113,4 @@ public class sensor
  * Sensor is turned off when battery is 10%
  * Battery starts off at 100
  * changed the drainRate of the battery for the sensor instead of internally generated. We pass in the drainRate through the sensor's constructor
- * changed sensor to sense the direction of the robot
  */

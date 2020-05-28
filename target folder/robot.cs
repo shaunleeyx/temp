@@ -29,45 +29,28 @@
 using System;
 public class robot 
 {
-	protected orientation orientationState;
-    protected enum orientation
-        {
-            Up,
-            Down,
-            Left,
-            Right
-        }
-	protected actuator nAct; 
-	protected actuator sAct;
-	protected actuator eAct;
-	protected actuator wAct;
+	private actuator nAct; 
+	private actuator sAct;
+	private actuator eAct;
+	private actuator wAct;
 	protected int rCoord;
 	protected int cCoord;
-	protected sensor upSensor;
-	protected sensor downSensor;
-	protected sensor rightSensor;
-	protected sensor leftSensor;
-
+	private sensor sObj;
 	private int count;
 	private String filename;
 	protected int[,] grid;
-	private const int SIZE = 11;
+	const int SIZE = 11;
 	private bool state;
 	/*
 	 *Precondition:string and double
 	 *Postcondition:filename is str and 2d array copies the file,double sets the drainRate for the battery for the sensor
 	 */
 	public robot(string str, double drainRate)
-	{ 
-		if (str == null) throw new ArgumentNullException("invalid file");
-        orientationState = orientation.Up; 
+	{
 		filename = str;
 		grid = new int[SIZE, SIZE];
 		count = 0;
-		upSensor = new sensor(drainRate,0,grid);
-		downSensor = new sensor(drainRate,1,grid);
-		rightSensor = new sensor(drainRate,2,grid);
-		leftSensor = new sensor(drainRate,3,grid);
+		sObj = new sensor(drainRate);
 		nAct = new actuator(0);
 		sAct = new actuator(1);
 		eAct = new actuator(2);
@@ -75,7 +58,7 @@ public class robot
 		rCoord = 5;
 		cCoord = 5;
 		state = true;
-		string text = System.IO.File.ReadAllText(filename);
+		string text = System.IO.File.ReadAllText(str);
 		string ss = text.Replace("\n", " ");
 		ss = string.Join( " ", ss.Split( new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries ));
 		string[] arr = ss.Split(' ');
@@ -93,12 +76,10 @@ public class robot
 	 *Precondition: int
 	 *Postcondition:returns true or false
 	 */
-	public bool isValid()
+	public bool isValid(int num)
 	{
-		
-		return (upSensor.isValid(rCoord,cCoord) && downSensor.isValid(rCoord,cCoord) && rightSensor.isValid(rCoord,cCoord) && leftSensor.isValid(rCoord,cCoord));
+		return sObj.isValid(num);
 	}
-	//TODO document this
 
 	public int getColumn()
 	{
@@ -110,26 +91,90 @@ public class robot
 		return rCoord;
 	}
 	/*
-	 *Precondition: None
-	 *Postcondition: keeps moving robot up 
+	 *Precondition:int from 0 to 4
+	 *Postcondition: moves the robot in direction depending on dir until a wall is in front
 	 */
-	public virtual void Move()
+	public void Move(int Dir)
 	{
-		while(upSensor.isValid(rCoord,cCoord))
+		int sensed;
+		switch (Dir)
 		{
-			nAct.MoveForward(ref rCoord, ref cCoord);
+			case 0:
+				sensed = grid[rCoord - 1,cCoord];
+				while (sObj.isValid(sensed))
+				{
+					nAct.MoveForward(ref rCoord, ref cCoord);
+					sensed = grid[rCoord - 1,cCoord];
+				}
+				break;
+			case 1:
+				sensed = grid[rCoord + 1,cCoord];
+				while (sObj.isValid(sensed))
+				{
+					sAct.MoveForward(ref rCoord, ref cCoord);
+					sensed = grid[rCoord + 1,cCoord];
+				}
+				break;
+			case 2:
+				sensed = grid[rCoord,cCoord + 1];
+				while (sObj.isValid(sensed))
+				{
+					eAct.MoveForward(ref rCoord, ref cCoord);
+					sensed = grid[rCoord,cCoord + 1];
+				}
+				break;
+			case 3:
+				sensed = grid[rCoord,cCoord - 1];
+				while (sObj.isValid(sensed))
+				{
+					wAct.MoveForward(ref rCoord, ref cCoord);
+					sensed = grid[rCoord,cCoord - 1];
+				}
+				break;
+			default:
+				return;
 		}
 	}
 
 	/*
-	 *Precondition:None 
-	 *Postcondition:moves the robot up once
+	 *Precondition: int from 0 to 4
+	 *Postcondition:moves the robot once
 	 */
-	public virtual void MoveOne()
+	public void MoveOne(int Dir)
 	{
-		if(upSensor.isValid(rCoord,cCoord))
+		int sensed;
+		switch (Dir)
 		{
-			nAct.MoveForward(ref rCoord, ref cCoord);
+			case 0:
+				sensed = grid[rCoord - 1,cCoord];
+				if (sObj.isValid(sensed))
+				{
+					nAct.MoveForward(ref rCoord, ref cCoord);
+				}
+				break;
+			case 1:
+				sensed = grid[rCoord + 1,cCoord];
+				if (sObj.isValid(sensed))
+				{
+					sAct.MoveForward(ref rCoord, ref cCoord);
+				}
+				break;
+			case 2:
+				sensed = grid[rCoord,cCoord + 1];
+				if (sObj.isValid(sensed))
+				{
+					eAct.MoveForward(ref rCoord, ref cCoord);
+				}
+				break;
+			case 3:
+				sensed = grid[rCoord,cCoord - 1];
+				if (sObj.isValid(sensed))
+				{
+					wAct.MoveForward(ref rCoord, ref cCoord);
+				}
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -150,15 +195,12 @@ public class robot
 
 	public void Recharge()
 	{
-		upSensor.Recharge();
-		downSensor.Recharge();
-		rightSensor.Recharge();
-		leftSensor.Recharge(); 
+		sObj.Recharge();
 	}
 
 }
 
-//
+//C++ TO C# CONVERTER TODO TASK: 'rvalue references' have no equivalent in C#:
 /*Implementation invariant:
  * echos sensor's isvalid
  * echos actuator's moveforward() in move and moveone
@@ -167,11 +209,4 @@ public class robot
  * MoveOne uses sensor and detects for walls make sure the robot doesn't overlap with the wall
  * Move does the same thing but uses a while loop that invokes moveForward from the actuator until theres a wall in front
  * changed the boundaries of the grid to a variable so it removes the hardcoding
- * Made the protected variables like the sensor and actuator accessible to rotatingRobot
- * changed move() and moveone() to only go up because parent robot shouldn't beable to rotate or move sideways
- * every robot has 4 sensors for each direction
- * made a field called filename that encapsulates the string of the filename being passed into the param of constructor via constructor injection
- * throws exception if argument is null for constructor
- * initialized enum for direction in robot
- * changed the way 2darr gets processed from the file b/c c#
  */
