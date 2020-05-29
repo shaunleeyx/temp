@@ -3,8 +3,9 @@
 #include <chrono>
 #include "sensor.h"
 
-sensor::sensor(double input) {
+sensor::sensor(double input,int dir,int grid) {
     if (input > 100 || input < 0) input = 1; //document this design decision
+    this->grid = grid;
     battery = 100;
     drainRate = input;
     state = true;

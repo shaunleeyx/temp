@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{6E2CDAC2-438B-4C62-855B-BA01AD1A7DB0}|Default">
+  <MonoDevelop.Ide.ItemProperties.P3 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="P3/Program.cs">
+    <Files>
+      <File FileName="P3/RotatingRobot.cs" Line="1" Column="1" />
+      <File FileName="P3/robot.cs" Line="1" Column="1" />
+      <File FileName="P3/Program.cs" Line="10" Column="1" />
+      <File FileName="P3/grid.txt" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="P3" expanded="True">
+            <Node name="P3" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

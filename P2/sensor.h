@@ -44,6 +44,9 @@ public:
     void Recharge();
     double getBattery();
 private:
+    enum direction {East, West, North, South};
+    direction dir;
+    int grid;
     bool state;
     double battery;
     double drainRate;

@@ -1,0 +1,10 @@
+/Users/shaunlee/Projects/P3/P3/bin/Debug/netcoreapp3.0/P3
+/Users/shaunlee/Projects/P3/P3/bin/Debug/netcoreapp3.0/P3.deps.json
+/Users/shaunlee/Projects/P3/P3/bin/Debug/netcoreapp3.0/P3.runtimeconfig.json
+/Users/shaunlee/Projects/P3/P3/bin/Debug/netcoreapp3.0/P3.runtimeconfig.dev.json
+/Users/shaunlee/Projects/P3/P3/bin/Debug/netcoreapp3.0/P3.dll
+/Users/shaunlee/Projects/P3/P3/bin/Debug/netcoreapp3.0/P3.pdb
+/Users/shaunlee/Projects/P3/P3/obj/Debug/netcoreapp3.0/P3.AssemblyInfoInputs.cache
+/Users/shaunlee/Projects/P3/P3/obj/Debug/netcoreapp3.0/P3.AssemblyInfo.cs
+/Users/shaunlee/Projects/P3/P3/obj/Debug/netcoreapp3.0/P3.dll
+/Users/shaunlee/Projects/P3/P3/obj/Debug/netcoreapp3.0/P3.pdb

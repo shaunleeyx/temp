@@ -87,6 +87,8 @@ public:
     int getColumn();
 
 private:
+    enum direction {East, West, North, South};
+    direction dir;
     sensor* sObj;
     int rCoord;
     int cCoord;
