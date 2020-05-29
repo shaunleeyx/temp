@@ -39,17 +39,23 @@ public:
      *Precondition: int
      *Postcondition:returns true or false
      */
+
     bool isValid(int);
+
     /*
      *Precondition:int from 0 to 4
      *Postcondition: moves the robot in direction depending on dir until a wall is in front
      */
+
     void Move(int Dir);
+
     /*
      *Precondition: int from 0 to 4
      *Postcondition:moves the robot once
      */
+
     void MoveOne(int Dir);
+
     /*
      *Precondition: state is set to something
      *Postcondition: returns the state of object

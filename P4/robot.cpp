@@ -8,11 +8,7 @@
 robot::robot(std::string str, double drainRate)
 {
     orientationState = orientation::Up;
-    filename = str;
-    downSensor = new sensor(drainRate);
-    upSensor = new sensor(drainRate);
-    leftSensor = new sensor(drainRate);
-    rightSensor = new sensor(drainRate);
+    filename = str; 
     nAct = new actuator(0);
     sAct = new actuator(1);
     eAct = new actuator(2);
@@ -21,7 +17,7 @@ robot::robot(std::string str, double drainRate)
     cCoord = 5;
     state = true;
     std::string text;
-    std::ifstream file(filename)
+    std::ifstream file(filename);
     if (file.is_open())
     {
       for(int r = 0; r <= 10; r++)
@@ -35,7 +31,11 @@ robot::robot(std::string str, double drainRate)
       }
     file.close();
     }
-}
+    upSensor = new sensor(drainRate,0,grid);
+    downSensor = new sensor(drainRate,1,grid);
+    rightSensor = new sensor(drainRate,2,grid);
+    leftSensor = new sensor(drainRate,3,grid);
+} 
 
 int robot::getRow()
 {
@@ -50,11 +50,12 @@ int robot::getColumn()
 
 void robot::Move(int Dir)
 {
-
+    while(upSensor->isValid(rCoord,cCoord)) nAct->MoveForward(rCoord,cCoord); 
 }
 
 void robot::MoveOne(int Dir)
 {
+    if(upSensor->isValid(rCoord,cCoord)) nAct->MoveForward(rCoord,cCoord);
 }
 
 bool robot::isPowered()
@@ -64,13 +65,17 @@ bool robot::isPowered()
 
 bool robot::isValid(int num)
 {
-    return sObj->isValid(num);
+    return (upSensor->isValid(rCoord,cCoord) && downSensor->isValid(rCoord,cCoord) && rightSensor->isValid(rCoord,cCoord) && leftSensor->isValid(rCoord,cCoord));
 }
+
 //only moves if it has 1
 //TODO
 void robot::Recharge()
 {
-    sObj->Recharge();
+    upSensor->Recharge();
+    downSensor->Recharge();
+    leftSensor->Recharge();
+    rightSensor->Recharge();
 }
 //TODO
 

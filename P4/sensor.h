@@ -34,7 +34,7 @@ private:
         Right
     };
     orientation orientationState;
-    int* g[11];
+    int g[11][11];
     bool state;
     double battery;
     double drainRate;
@@ -56,7 +56,9 @@ public:
     *Precondition:None
     *Postcondition: returns true or false based on the battery
      */
-    bool isValid(int);
+
+    bool isValid(int rCoord,int cCoord);
+
     /*
        *Precondition:none
        *Postcondition: changes the state to true and battery to 100
