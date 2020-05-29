@@ -87,17 +87,29 @@ public:
     int getColumn();
 
 private:
-    enum direction {East, West, North, South};
-    direction dir;
-    sensor* sObj;
+    enum orientation 
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    };
+    orientation orientationState;
+    sensor* upSensor;
+    sensor* downSensor;
+    sensor* rightSensor;
+    sensor* leftSensor;
     int rCoord;
     int cCoord;
-    int grid[11][11];
+    static const int SIZE = 11;
+    int grid[SIZE][SIZE];
     bool state;
     actuator* nAct;
     actuator* sAct;
     actuator* wAct;
     actuator* eAct;
+    std::string filename;
+
 };
 
 

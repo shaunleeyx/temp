@@ -1,8 +1,9 @@
 ﻿#include "robot.h"
 #include "actuator.h"
 #include "sensor.h"
+#include <iostream>
 
-robot::robot(const std::wstring &str, double drainRate)
+robot::robot(std::string str, double drainRate)
 {
 	if (str == L"")
 	{
@@ -10,14 +11,11 @@ robot::robot(const std::wstring &str, double drainRate)
 	}
 	orientationState = orientation::Up;
 	filename = str;
-//C# TO C++ CONVERTER NOTE: The following call to the 'RectangularVectors' helper class reproduces the rectangular array initialization that is automatic in C#:
-//ORIGINAL LINE: grid = new int[SIZE, SIZE];
-	grid = RectangularVectors::RectangularIntVector(SIZE, SIZE);
 	count = 0;
-	upSensor = new sensor(drainRate,0,grid);
-	downSensor = new sensor(drainRate,1,grid);
-	rightSensor = new sensor(drainRate,2,grid);
-	leftSensor = new sensor(drainRate,3,grid);
+	// upSensor = new sensor(drainRate,0,grid);
+	// downSensor = new sensor(drainRate,1,grid);
+	// rightSensor = new sensor(drainRate,2,grid);
+	// leftSensor = new sensor(drainRate,3,grid);
 	nAct = new actuator(0);
 	sAct = new actuator(1);
 	eAct = new actuator(2);

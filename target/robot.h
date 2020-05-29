@@ -41,17 +41,22 @@ class sensor;
 
 class robot
 {
-protected:
-	orientation orientationState = static_cast<orientation>(0);
-protected:
-	enum class orientation
+private:
+	int count = 0;
+	std::string filename;
+	static const int SIZE = 11;
+	bool state = false;
+
+protected: 
+	int grid[SIZE][SIZE];
+	enum orientation
 	{
 			Up,
 			Down,
 			Left,
 			Right
 	};
-protected:
+	orientation orientationState;
 	actuator *nAct;
 	actuator *sAct;
 	actuator *eAct;
@@ -61,20 +66,7 @@ protected:
 	sensor *upSensor;
 	sensor *downSensor;
 	sensor *rightSensor;
-	sensor *leftSensor;
-
-private:
-	int count = 0;
-	std::wstring filename;
-protected:
-	std::vector<std::vector<int>> grid;
-private:
-	static constexpr int SIZE = 11;
-	bool state = false;
-	/*
-	 *Precondition:string and double
-	 *Postcondition:filename is str and 2d array copies the file,double sets the drainRate for the battery for the sensor
-	 */
+	sensor *leftSensor; 
 public:
 	virtual ~robot()
 	{
@@ -88,7 +80,12 @@ public:
 		delete leftSensor;
 	}
 
-	robot(const std::wstring &str, double drainRate);
+	/*
+	 *Precondition:string and double
+	 *Postcondition:filename is str and 2d array copies the file,double sets the drainRate for the battery for the sensor
+	 */
+
+	robot(const std::string str, double drainRate);
 
 	/*
 	 *Precondition: int

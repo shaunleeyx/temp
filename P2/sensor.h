@@ -24,9 +24,29 @@
 
 
 class sensor {
+private:
+    static const int SIZE = 11;
+    enum orientation 
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    };
+    orientation orientationState;
+    int grid[SIZE][SIZE];
+    bool state;
+    double battery;
+    double drainRate;
+    /*
+    *Precondition:none
+    *Postcondition:changes the state of state if battery is at 10% or below
+    */
+    void checkBattery();
+
 public:
     double getdrainRate();
-    sensor(double);
+    sensor(double,int,int[][11]);
     /*
     *Precondition: initialized class
     *Postcondition: decreases the battery based on the drainRate.
@@ -43,18 +63,7 @@ public:
        */
     void Recharge();
     double getBattery();
-private:
-    enum direction {East, West, North, South};
-    direction dir;
-    int grid;
-    bool state;
-    double battery;
-    double drainRate;
-    /*
-     *Precondition:none
-     *Postcondition:changes the state of state if battery is at 10% or below
-     */
-    void checkBattery();
+    
 };
 
 

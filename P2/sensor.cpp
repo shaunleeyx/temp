@@ -3,7 +3,7 @@
 #include <chrono>
 #include "sensor.h"
 
-sensor::sensor(double input,int dir,int grid) {
+sensor::sensor(double input,int dir,int grid[][11]) {
     if (input > 100 || input < 0) input = 1; //document this design decision
     this->grid = grid;
     battery = 100;
