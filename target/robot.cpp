@@ -25,17 +25,20 @@ robot::robot(const std::wstring &str, double drainRate)
 	rCoord = 5;
 	cCoord = 5;
 	state = true;
-	std::wstring text = System::IO::File::ReadAllText(filename);
-	std::wstring ss = StringHelper::replace(text, L"\n", L" ");
-	ss = std::wstring::Join(L" ", ss.Split({L' '}, StringSplitOptions::RemoveEmptyEntries));
-	std::vector<std::wstring> arr = StringHelper::split(ss, L' ');
-	for (int r = 0; r <= 10; r++)
+	std::string text;
+	std::ifstream file(str);
+	if (file.is_open())
 	{
-		for (int c = 0; c <= 10; c++)
+	for(int r = 0; r <= 10; r++)
+	{
+		for(int c = 0; c <= 10; c++)
 		{
-			grid[r][c] = std::stoi(arr[count]);
-			count++;
+		std::string temp;
+		file >> temp;
+		grid[r][c] = stoi(temp);
 		}
+	}
+	file.close();
 	}
 }
 

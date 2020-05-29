@@ -19,7 +19,8 @@
  * state of actuator is always true
  **/
 
-
+#ifndef P2_ACTUATOR_H
+#define P2_ACTUATOR_H 
 
 class actuator
 {
@@ -53,3 +54,5 @@ public:
  * actuator is always true no matter what
  * isPoweredUp returns the state of the object for actuator
  */
+
+#endif //P2_ACTUATOR_H

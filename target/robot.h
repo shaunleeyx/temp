@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿#ifndef P2_ROBOT_H
+#define P2_ROBOT_H
 
 #include <string>
 #include <vector>
@@ -144,3 +145,5 @@ public:
  * initialized enum for direction in robot
  * changed the way 2darr gets processed from the file b/c c#
  */
+
+#endif //P2_ROBOT_H

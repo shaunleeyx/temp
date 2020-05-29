@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿#ifndef P2_SENSOR_H
+#define P2_SENSOR_H
 
 #include <vector>
 #include "rectangularvectors.h"
@@ -83,3 +84,5 @@ private:
  * changed the drainRate of the battery for the sensor instead of internally generated. We pass in the drainRate through the sensor's constructor
  * changed sensor to sense the direction of the robot
  */
+
+#endif //P2_SENSOR_H
