@@ -5,6 +5,7 @@
 #include "robot.h"
 #include <iostream>
 #include <string>
+#include <random>
 robot::robot(std::string str, double drainRate)
 {
     orientationState = orientation::Up;
@@ -12,7 +13,7 @@ robot::robot(std::string str, double drainRate)
     nAct = new actuator(0);
     sAct = new actuator(1);
     eAct = new actuator(2);
-    wAct = new actuator(3);
+    wAct = new actuator(3); 
     rCoord = 5;
     cCoord = 5;
     state = true;
@@ -48,12 +49,12 @@ int robot::getColumn()
 }
 
 
-void robot::Move(int Dir)
+void robot::Move()
 {
     while(upSensor->isValid(rCoord,cCoord)) nAct->MoveForward(rCoord,cCoord); 
 }
 
-void robot::MoveOne(int Dir)
+void robot::MoveOne()
 {
     if(upSensor->isValid(rCoord,cCoord)) nAct->MoveForward(rCoord,cCoord);
 }
@@ -189,4 +190,5 @@ void robot::swap(T &lhs, T &rhs) {
  * move semantics uses swap for both = and the default move constructor
  * MoveOne uses sensor and detects for walls make sure the robot doesn't overlap with the wall
  * Move does the same thing but uses a while loop that invokes moveForward from the actuator until theres a wall in front
+ * gave constructor a default argument for drainRate it ranges from 1 - 10
  */

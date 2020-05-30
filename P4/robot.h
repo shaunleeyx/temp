@@ -28,13 +28,14 @@
 #include <fstream>
 #include "sensor.h"
 #include "actuator.h"
+#include <random>
 class robot {
 public:
     /*
      *Precondition:string and double
      *Postcondition:filename is str and 2d array copies the file,double sets the drainRate for the battery for the sensor
      */
-    robot(std::string str,double);
+    robot(std::string str,double = (rand() % 100) + 1);
     /*
      *Precondition: int
      *Postcondition:returns true or false
@@ -47,14 +48,14 @@ public:
      *Postcondition: moves the robot in direction depending on dir until a wall is in front
      */
 
-    void Move(int Dir);
+    virtual void Move();
 
     /*
      *Precondition: int from 0 to 4
      *Postcondition:moves the robot once
      */
 
-    void MoveOne(int Dir);
+    virtual void MoveOne();
 
     /*
      *Precondition: state is set to something
@@ -92,7 +93,7 @@ public:
     int getRow();
     int getColumn();
 
-private:
+protected:
     enum orientation 
     {
         Up,

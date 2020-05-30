@@ -17,9 +17,7 @@
  **/
 using System;
 public class RotatingRobot : robot
-{
-
-
+{ 
     public RotatingRobot(string str,double drainRate) : base(str,drainRate)
     {
     }

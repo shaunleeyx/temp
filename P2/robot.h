@@ -44,12 +44,12 @@ public:
      *Precondition:int from 0 to 4
      *Postcondition: moves the robot in direction depending on dir until a wall is in front
      */
-    void Move(int Dir);
+    void Move();
     /*
      *Precondition: int from 0 to 4
      *Postcondition:moves the robot once
      */
-    void MoveOne(int Dir);
+    virtual void MoveOne();
     /*
      *Precondition: state is set to something
      *Postcondition: returns the state of object
@@ -86,30 +86,16 @@ public:
     int getRow();
     int getColumn();
 
-private:
-    enum orientation 
-    {
-        Up,
-        Down,
-        Left,
-        Right
-    };
-    orientation orientationState;
-    sensor* upSensor;
-    sensor* downSensor;
-    sensor* rightSensor;
-    sensor* leftSensor;
+protected: 
+    sensor* sObj;
     int rCoord;
     int cCoord;
-    static const int SIZE = 11;
-    int grid[SIZE][SIZE];
+    int grid[11][11];
     bool state;
     actuator* nAct;
     actuator* sAct;
     actuator* wAct;
     actuator* eAct;
-    std::string filename;
-
 };
 
 
