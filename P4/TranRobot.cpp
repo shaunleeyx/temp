@@ -1,22 +1,28 @@
-﻿#include "TranRobot.h"
+﻿#include "tranRobot.h"
 
 TranRobot::TranRobot(const std::string str, double drainRate) : robot(str,drainRate)
 {
 
 }
 
+
 void TranRobot::Forward()
 {
-	if (upSensor->isValid(rCoord,cCoord))
+	moveCount++;
+	if (upCheck(rCoord,cCoord))
 	{
-		nAct->MoveForward(rCoord, cCoord);
+		for(int i = 0; i < SIZE; i++)
+		{
+		nAct->MoveForward(rCoord, cCoord); 
+		}
 	}
 	orientationState = orientation::Up;
 }
 
 void TranRobot::Left()
 {
-	if (leftSensor->isValid(rCoord,cCoord))
+	moveCount++;
+	if (leftCheck(rCoord,cCoord))
 	{
 		wAct->MoveForward(rCoord, cCoord);
 	}
@@ -25,7 +31,8 @@ void TranRobot::Left()
 
 void TranRobot::Right()
 {
-	if (rightSensor->isValid(rCoord,cCoord))
+	moveCount++;
+	if (rightCheck(rCoord,cCoord))
 	{
 		eAct->MoveForward(rCoord, cCoord);
 	}
@@ -34,7 +41,8 @@ void TranRobot::Right()
 
 void TranRobot::Back()
 {
-	if (downSensor->isValid(rCoord,cCoord))
+	moveCount++;
+	if (downCheck(rCoord,cCoord))
 	{
 		sAct->MoveForward(rCoord, cCoord);
 	}
@@ -42,30 +50,34 @@ void TranRobot::Back()
 }
 
 void TranRobot::Move()
-{
+{ 
 	switch (orientationState)
 	{
 		case orientation::Up:
-			while (upSensor->isValid(rCoord,cCoord))
+			while (upCheck(rCoord,cCoord))
 			{
+				moveCount++;
 				nAct->MoveForward(rCoord, cCoord);
 			}
 			break;
 		case orientation::Down:
-			while (downSensor->isValid(rCoord,cCoord))
+			while (downCheck(rCoord,cCoord))
 			{
+				moveCount++;
 				sAct->MoveForward(rCoord, cCoord);
 			}
 			break;
 		case orientation::Right:
-			while (rightSensor->isValid(rCoord,cCoord))
+			while (rightCheck(rCoord,cCoord))
 			{
+				moveCount++;
 				eAct->MoveForward(rCoord, cCoord);
 			}
 			break;
 		case orientation::Left:
-			while (leftSensor->isValid(rCoord,cCoord))
+			while (leftCheck(rCoord,cCoord))
 			{
+				moveCount++;
 				wAct->MoveForward(rCoord, cCoord);
 			}
 			break;
@@ -79,25 +91,25 @@ void TranRobot::MoveOne()
 	switch (orientationState)
 	{
 		case orientation::Up:
-			if (upSensor->isValid(rCoord,cCoord))
+			if (upCheck(rCoord,cCoord))
 			{
 				nAct->MoveForward(rCoord, cCoord);
 			}
 			break;
 		case orientation::Down:
-			if (downSensor->isValid(rCoord,cCoord))
+			if (downCheck(rCoord,cCoord))
 			{
 				sAct->MoveForward(rCoord, cCoord);
 			}
 			break;
 		case orientation::Right:
-			if (rightSensor->isValid(rCoord,cCoord))
+			if (rightCheck(rCoord,cCoord))
 			{
 				eAct->MoveForward(rCoord, cCoord);
 			}
 			break;
 		case orientation::Left:
-			if (leftSensor->isValid(rCoord,cCoord))
+			if (leftCheck(rCoord,cCoord))
 			{
 				wAct->MoveForward(rCoord, cCoord);
 			}
@@ -106,3 +118,13 @@ void TranRobot::MoveOne()
 			break;
 	}
 }
+
+/*Implementation invariant:
+ * Constructor argument passes the arguments to the robot
+ * moving a direction changes the direction of the robot
+ * rCoord and cCoord are changed through references passed in
+ * override parent's move() with transrobot()
+ * directional functions uses directional actuator with directional sensors
+ * add bool function that checks if at least 2 sensors have 80% battery and returns a bool from each direction
+ * default argument for drainRate is random between 1 - 10
+ */

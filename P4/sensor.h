@@ -46,7 +46,7 @@ private:
 
 public:
     double getdrainRate();
-    sensor(double,int,int[11][11]);
+    sensor(int,int[11][11],double);
     /*
     *Precondition: initialized class
     *Postcondition: decreases the battery based on the drainRate.

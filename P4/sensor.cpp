@@ -4,7 +4,7 @@
 #include "sensor.h"
 #include <iostream>
 using namespace std;
-sensor::sensor(double input,int dir,int grid[11][11]) {
+sensor::sensor(int dir,int grid[11][11],double input) {
     if (input > 100 || input < 0) input = 1; 
     for (int r = 0; r <= 10; r++)
     {

@@ -14,6 +14,11 @@
  * move() moves the robot forward depending on the direction of the robot until sensors hit the wall
  * moveone() moves the robot forward by one depending on the direction 
  * rotate() rotates the robot clockwise north,east,south,west
+ * operator > compare if rotatingrobot obj is greater than another rotatingrobot obj's movecount
+ * operator < compare if rotatingrobot obj is less than another rotatingrobot obj's movecount
+ * operator != compare if rotatingrobot obj is not equal to another rotatingrobot obj's movecount
+ * operator == compare if rotatingrobot obj is equal to another rotatingrobot obj's movecount
+ * 
  *  
  *
  * Interface Invariant:   
@@ -26,7 +31,7 @@ class RotatingRobot : public robot
 
 
 public:
-	RotatingRobot(const std::string str, double = (rand() % 100) + 1);
+	RotatingRobot(const std::string str, double = (rand() % 10) + 1);
 	/**
 	 *PreCondition: existing orientationstate set to a direction
 	 *PostCondition: rotates the orientationstate up,right,down,left
@@ -45,13 +50,8 @@ public:
 	 **/
 
 	void MoveOne() override;
+
 };
-/*Implementation invariant:
- * the direction of the robot is set to north by default
- * move moves the robot forward until it hits a wall 
- * move once moves the robot forward once
- * orientation state rotate uses switch case statement for rotating the robot through the state of enums
- * the argument of the constructor passes into the robot constructor
- */
+
 
 #endif// P2_ROTATINGROBOT_H

@@ -11,7 +11,11 @@
  *                     isPowered returns the state of object (on/off)
  *                     getRow and getColumn returns the coordinates for rCoord and cCoord
  *                     size of the maze has to be always 11x11
- *                     robot cannot get outside the maze
+ *                     robot cannot get outside the maze *                      
+ *                     operator > compare if robot obj is greater than another robot obj's movecount
+ *                     operator < compare if robot obj is less than another robot obj's movecount
+ *                     operator != compare if robot obj is not equal to another robot obj's movecount
+ *                     operator == compare if robot obj is equal to another robot obj's movecount
  *
  * Interface Invariant:
  *                     robot has 4 actuator for each direction
@@ -35,7 +39,7 @@ public:
      *Precondition:string and double
      *Postcondition:filename is str and 2d array copies the file,double sets the drainRate for the battery for the sensor
      */
-    robot(std::string str,double = (rand() % 100) + 1);
+    robot(std::string str,double = (rand() % 10) + 1);
     /*
      *Precondition: int
      *Postcondition:returns true or false
@@ -67,7 +71,7 @@ public:
      *Postcondition:recharges the battery of the sensor to 100
      */
     void Recharge();
-    ~robot();
+    virtual ~robot();
     /*
      *Precondition: existing robot
      *Postcondition: copies the object robots
@@ -92,6 +96,14 @@ public:
     void swap(T &lhs, T &rhs);
     int getRow();
     int getColumn();
+    void Charge();
+    bool operator==(robot &obj);
+    bool operator!=(robot &obj);
+    bool operator>(robot &obj);
+    bool operator<(robot &obj);
+    bool operator>=(robot &obj);
+    bool operator<=(robot &obj);
+    int getMoveCount();
 
 protected:
     enum orientation 
@@ -102,20 +114,26 @@ protected:
         Right
     };
     orientation orientationState;
-    sensor* upSensor;
-    sensor* downSensor;
-    sensor* rightSensor;
-    sensor* leftSensor;
     int rCoord;
     int cCoord;
-    static const int SIZE = 11;
-    int grid[SIZE][SIZE];
+    static const int gridSIZE = 11;
+    int grid[gridSIZE][gridSIZE];
     bool state;
     actuator* nAct;
     actuator* sAct;
     actuator* wAct;
     actuator* eAct;
     std::string filename;
+    int moveCount;
+	bool upCheck(int,int);
+	bool downCheck(int,int);
+	bool leftCheck(int,int);
+	bool rightCheck(int,int);
+	static const int SIZE = 5;
+	sensor* upSensorArr[SIZE];
+	sensor* downSensorArr[SIZE];
+	sensor* leftSensorArr[SIZE];
+	sensor* rightSensorArr[SIZE]; 
 
 };
 

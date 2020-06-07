@@ -1,8 +1,9 @@
-﻿#include "RotatingRobot.h"
+﻿#include "rotRobot.h"
 
 RotatingRobot::RotatingRobot(const std::string str, double drainRate) : robot(str,drainRate)
 {
-}
+
+} 
 
 void RotatingRobot::Rotate()
 {
@@ -23,33 +24,37 @@ void RotatingRobot::Rotate()
 		default:
 			break;
 	}
-}
+} 
 
 void RotatingRobot::Move()
 {
 	switch (orientationState)
 	{
 		case orientation::Up:
-			while (upSensor->isValid(rCoord,cCoord))
+			while (upCheck(rCoord,cCoord))
 			{
+				moveCount++;
 				nAct->MoveForward(rCoord, cCoord);
 			}
 			break;
 		case orientation::Down:
-			while (downSensor->isValid(rCoord,cCoord))
+			while (downCheck(rCoord,cCoord))
 			{
+				moveCount++;
 				sAct->MoveForward(rCoord, cCoord);
 			}
 			break;
 		case orientation::Right:
-			while (rightSensor->isValid(rCoord,cCoord))
+			while (rightCheck(rCoord,cCoord))
 			{
+				moveCount++;
 				eAct->MoveForward(rCoord, cCoord);
 			}
 			break;
 		case orientation::Left:
-			while (leftSensor->isValid(rCoord,cCoord))
+			while (leftCheck(rCoord,cCoord))
 			{
+				moveCount++;
 				wAct->MoveForward(rCoord, cCoord);
 			}
 			break;
@@ -61,28 +66,29 @@ void RotatingRobot::Move()
 
 void RotatingRobot::MoveOne()
 {
+	moveCount++;
 	switch (orientationState)
 	{
 		case orientation::Up:
-			if (upSensor->isValid(rCoord,cCoord))
+			if (upCheck(rCoord,cCoord))
 			{
 				nAct->MoveForward(rCoord, cCoord);
 			}
 			break;
 		case orientation::Down:
-			if (downSensor->isValid(rCoord,cCoord))
+			if (downCheck(rCoord,cCoord))
 			{
 				sAct->MoveForward(rCoord, cCoord);
 			}
 			break;
 		case orientation::Right:
-			if (rightSensor->isValid(rCoord,cCoord))
+			if (rightCheck(rCoord,cCoord))
 			{
 				eAct->MoveForward(rCoord, cCoord);
 			}
 			break;
 		case orientation::Left:
-			if (leftSensor->isValid(rCoord,cCoord))
+			if (leftCheck(rCoord,cCoord))
 			{
 				wAct->MoveForward(rCoord, cCoord);
 			}
@@ -92,3 +98,13 @@ void RotatingRobot::MoveOne()
 	}
 
 }
+
+
+/*Implementation invariant:
+ * the direction of the robot is set to north by default
+ * move moves the robot forward until it hits a wall 
+ * move once moves the robot forward once
+ * orientation state rotate uses switch case statement for rotating the robot through the state of enums
+ * the argument of the constructor passes into the robot constructor
+ * default argument for drainRate is random between 1 - 10
+ */

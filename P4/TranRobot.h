@@ -1,6 +1,5 @@
 ﻿#ifndef P2_TRANSROBOT_H
-#define P2_TRANSROBOT_H
-
+#define P2_TRANSROBOT_H 
 #include "robot.h"
 #include <string>
 #include <random>
@@ -17,6 +16,10 @@
  * Left() moves the position of the robot left 
  * Right() moves the position of the robot right
  * moves moves the robot forward depending on the direction of the robot
+ * operator > compare if TranRobot obj is greater than another TranRobot obj's movecount
+ * operator < compare if TranRobot obj is less than another TranRobot obj's movecount
+ * operator != compare if TranRobot obj is not equal to another TranRobot obj's movecount
+ * operator == compare if TranRobot obj is equal to another TranRobot obj's movecount
  *
  * Interface Invariant:   
  * robot cannot go through walls
@@ -27,7 +30,7 @@
 class TranRobot : public robot
 {
 public:
-	TranRobot(const std::string str, double = (rand() % 100) + 1);
+	TranRobot(const std::string str, double = (rand() % 10) + 1);
 	/**
 	 *PreCondition: existing 2 ints
 	 *PostCondition: changing state of ints
@@ -60,15 +63,11 @@ public:
 	 *PostCondition: changing state of coord
 	 **/
 	void MoveOne() override;
+	/**
+	 *PreCondition: none
+	 *PostCondition: changing state of coord
+	 **/
+private: 
 };
 
-
-
-/*Implementation invariant:
- * Constructor argument passes the arguments to the robot
- * moving a direction changes the direction of the robot
- * rCoord and cCoord are changed through references passed in
- * override parent's move() with transrobot()
- * directional functions uses directional actuator with directional sensors
- */
 #endif
