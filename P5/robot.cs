@@ -27,7 +27,7 @@
  **/
 
 using System;
-public class robot : irobot
+public class robot 
 {
 	protected orientation orientationState;
     protected enum orientation
