@@ -17,9 +17,10 @@
  * using the direction function changes the direction of the robot
  * 
  **/
-public class TranRobot : robot
+using System;
+public class TranRobot : robot,iTran
 {
-    public TranRobot(string str,double drainRate) : base(str,drainRate)
+    public TranRobot(string str) : base(str)
     {
         
     }
@@ -27,9 +28,9 @@ public class TranRobot : robot
      *PreCondition: existing 2 ints
      *PostCondition: changing state of ints
      **/
-    public void Forward()
+    public override void Forward()
     {
-        if (upSensor.isValid(rCoord,cCoord))
+        if (upSensor.isValid(rCoord,cCoord,grid))
         {
             nAct.MoveForward(ref rCoord, ref cCoord);
         }
@@ -39,9 +40,9 @@ public class TranRobot : robot
      *PreCondition: existing 2 ints
      *PostCondition: changing state of ints
      **/
-    public void Left()
+    public override void Left()
     {
-        if (leftSensor.isValid(rCoord,cCoord))
+        if (leftSensor.isValid(rCoord,cCoord,grid))
         {
             wAct.MoveForward(ref rCoord, ref cCoord);
         }
@@ -51,9 +52,9 @@ public class TranRobot : robot
      *PreCondition: existing 2 ints
      *PostCondition: changing state of ints
      **/
-    public void Right()
+    public override void Right()
     {
-        if (rightSensor.isValid(rCoord,cCoord))
+        if (rightSensor.isValid(rCoord,cCoord,grid))
         {
             eAct.MoveForward(ref rCoord, ref cCoord);
         }
@@ -63,9 +64,9 @@ public class TranRobot : robot
      *PreCondition: existing 2 ints
      *PostCondition: changing state of ints
      **/
-    public void Back()
+    public override void Back()
     {
-        if (downSensor.isValid(rCoord,cCoord))
+        if (downSensor.isValid(rCoord,cCoord,grid))
         {
             sAct.MoveForward(ref rCoord, ref cCoord);
         }    
@@ -81,25 +82,25 @@ public class TranRobot : robot
         switch (orientationState)
 		{
 			case orientation.Up:
-				while (upSensor.isValid(rCoord,cCoord))
+				while (upSensor.isValid(rCoord,cCoord,grid))
 				{
 					nAct.MoveForward(ref rCoord, ref cCoord);
 				}
 				break;
 			case orientation.Down: 
-				while (downSensor.isValid(rCoord,cCoord))
+				while (downSensor.isValid(rCoord,cCoord,grid))
 				{
 					sAct.MoveForward(ref rCoord, ref cCoord);
 				}
 				break;
 			case orientation.Right:
-				while (rightSensor.isValid(rCoord,cCoord))
+				while (rightSensor.isValid(rCoord,cCoord,grid))
 				{
 					eAct.MoveForward(ref rCoord, ref cCoord);
 				}
 				break;
 			case orientation.Left:
-				while (leftSensor.isValid(rCoord,cCoord))
+				while (leftSensor.isValid(rCoord,cCoord,grid))
 				{
 					wAct.MoveForward(ref rCoord, ref cCoord);
 				}
@@ -118,25 +119,25 @@ public class TranRobot : robot
         switch (orientationState)
 		{
 			case orientation.Up:
-				if (upSensor.isValid(rCoord,cCoord))
+				if (upSensor.isValid(rCoord,cCoord,grid))
 				{
 					nAct.MoveForward(ref rCoord, ref cCoord);
 				}
 				break;
 			case orientation.Down:
-				if (downSensor.isValid(rCoord,cCoord))
+				if (downSensor.isValid(rCoord,cCoord,grid))
 				{
 					sAct.MoveForward(ref rCoord, ref cCoord);
 				}
 				break;
 			case orientation.Right:
-				if (rightSensor.isValid(rCoord,cCoord))
+				if (rightSensor.isValid(rCoord,cCoord,grid))
 				{
 					eAct.MoveForward(ref rCoord, ref cCoord);
 				}
 				break;
 			case orientation.Left:
-				if (leftSensor.isValid(rCoord,cCoord))
+				if (leftSensor.isValid(rCoord,cCoord,grid))
 				{
 					wAct.MoveForward(ref rCoord, ref cCoord);
 				}

@@ -16,16 +16,17 @@
  * orientation default direction is set to north
  **/
 using System;
-public class RotatingRobot : robot
+public class RotatingRobot : robot,irotate
 { 
-    public RotatingRobot(string str,double drainRate) : base(str,drainRate)
+    public RotatingRobot(string str) : base(str)
     {
+
     }
     /**
      *PreCondition: existing orientationstate set to a direction
      *PostCondition: rotates the orientationstate up,right,down,left
      **/
-    public void Rotate()
+    public override void Rotate()
     {
         switch(orientationState)
         {
@@ -52,34 +53,34 @@ public class RotatingRobot : robot
     public override void Move()
     { 
         switch (orientationState)
-		{
-			case orientation.Up:
-				while (upSensor.isValid(rCoord,cCoord))
-				{
-					nAct.MoveForward(ref rCoord, ref cCoord);
-				}
-				break;
-			case orientation.Down: 
-				while (downSensor.isValid(rCoord,cCoord))
-				{
-					sAct.MoveForward(ref rCoord, ref cCoord);
-				}
-				break;
-			case orientation.Right:
-				while (rightSensor.isValid(rCoord,cCoord))
-				{
-					eAct.MoveForward(ref rCoord, ref cCoord);
-				}
-				break;
-			case orientation.Left:
-				while (leftSensor.isValid(rCoord,cCoord))
-				{
-					wAct.MoveForward(ref rCoord, ref cCoord);
-				}
-				break;
-			default:
-				break;
-		}
+        {
+            case orientation.Up:
+                while (upSensor.isValid(rCoord,cCoord,grid))
+                {
+                    nAct.MoveForward(ref rCoord, ref cCoord);
+                }
+                break;
+            case orientation.Down: 
+                while (downSensor.isValid(rCoord,cCoord,grid))
+                {
+                    sAct.MoveForward(ref rCoord, ref cCoord);
+                }
+                break;
+            case orientation.Right:
+                while (rightSensor.isValid(rCoord,cCoord,grid))
+                {
+                    eAct.MoveForward(ref rCoord, ref cCoord);
+                }
+                break;
+            case orientation.Left:
+                while (leftSensor.isValid(rCoord,cCoord,grid))
+                {
+                    wAct.MoveForward(ref rCoord, ref cCoord);
+                }
+                break;
+            default:
+                break;
+        }
 
     }
 
@@ -90,35 +91,35 @@ public class RotatingRobot : robot
 
     public override void MoveOne()
     {
-		switch (orientationState)
-		{
-			case orientation.Up:
-				if (upSensor.isValid(rCoord,cCoord))
-				{
-					nAct.MoveForward(ref rCoord, ref cCoord);
-				}
-				break;
-			case orientation.Down:
-				if (downSensor.isValid(rCoord,cCoord))
-				{
-					sAct.MoveForward(ref rCoord, ref cCoord);
-				}
-				break;
-			case orientation.Right:
-				if (rightSensor.isValid(rCoord,cCoord))
-				{
-					eAct.MoveForward(ref rCoord, ref cCoord);
-				}
-				break;
-			case orientation.Left:
-				if (leftSensor.isValid(rCoord,cCoord))
-				{
-					wAct.MoveForward(ref rCoord, ref cCoord);
-				}
-				break;
-			default:
-				break;
-		}
+        switch (orientationState)
+        {
+            case orientation.Up:
+                if (upSensor.isValid(rCoord,cCoord,grid))
+                {
+                    nAct.MoveForward(ref rCoord, ref cCoord);
+                }
+                break;
+            case orientation.Down:
+                if (downSensor.isValid(rCoord,cCoord,grid))
+                {
+                    sAct.MoveForward(ref rCoord, ref cCoord);
+                }
+                break;
+            case orientation.Right:
+                if (rightSensor.isValid(rCoord,cCoord,grid))
+                {
+                    eAct.MoveForward(ref rCoord, ref cCoord);
+                }
+                break;
+            case orientation.Left:
+                if (leftSensor.isValid(rCoord,cCoord,grid))
+                {
+                    wAct.MoveForward(ref rCoord, ref cCoord);
+                }
+                break;
+            default:
+                break;
+        }
 
     }
 

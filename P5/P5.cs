@@ -1,30 +1,19 @@
-
+/* 
+ * Author:Shaun Lee
+ * Driver Overview: This tests out robot,rotatingRobot,TranRobot 
+ */
 using System;
-public class submersible : isubmersible
+
+class MainClass 
 {
-    private int rCoord;
-    private int cCoord;
-    string[] arrayofgrid;
-    
-   public submersible(int n)
-    {
-        arrayofgrid = new string[n];
-        rCoord = 5;
-        cCoord = 5;
-        for(int i = 0; i < n; i ++)
+        const string directory = "grid.txt"; 
+        const int SIZE = 9;
+        public static void Main(string[] args)
         {
-            arrayofgrid[i] = "Grid" + i + ".txt";
-            Console.WriteLine(arrayofgrid[i]);
+            
         }
-    }
-
-    public void printArr(int num)
-    {
- 
-    }
-
-    int[,] readfile(string filename)
-    {
+        static public int[,] readfile(string filename)
+        {
         const int SIZE = 11;
         int[,] grid = new int [SIZE,SIZE];
         int count = 0;
@@ -40,7 +29,8 @@ public class submersible : isubmersible
 				count++;
 			}
 		}
+
         return grid;
     }
-
+ 
 }

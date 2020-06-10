@@ -23,19 +23,18 @@ using System.Threading;
 
 public class sensor
 {
-	private int[,] grid;
 	orientation orientationState;
 	private enum orientation
         {
             Up,
             Down,
             Left,
-            Right
+            Right,
+			vertical
         }
 
-	public sensor(double input,int dir,int[,] grid)
+	public sensor(double input,int dir)
 	{
-		this.grid = grid;
 		switch(dir)
 		{
 			case 0:
@@ -49,6 +48,9 @@ public class sensor
 				break;
 			case 3:
 				orientationState = orientation.Left;
+				break;
+			case 4:
+				orientationState = orientation.vertical;
 				break;
 			default:
 				orientationState = orientation.Up; 
@@ -84,7 +86,7 @@ public class sensor
 	*Precondition:None
 	*Postcondition: returns true or false based on the battery
 	 */
-	public bool isValid(int rCoord,int cCoord)
+	public bool isValid(int rCoord,int cCoord,int[,] arr)
 	{
 		checkBattery();
 		if (state)
@@ -92,19 +94,23 @@ public class sensor
 			drain();
 			if(orientationState == orientation.Up)
 			{
-				return (grid[rCoord -1,cCoord] == 1);
+				return (arr[rCoord -1,cCoord] == 1);
 			}
 			else if (orientationState == orientation.Down)
 			{
-				return (grid[rCoord +1,cCoord] == 1); 
+				return (arr[rCoord +1,cCoord] == 1); 
 			}
 			else if (orientationState == orientation.Right)
 			{
-				return (grid[rCoord,cCoord + 1] == 1); 
+				return (arr[rCoord,cCoord + 1] == 1); 
 			}
 			else if (orientationState == orientation.Left)
 			{
-				return (grid[rCoord,cCoord -1] == 1); 
+				return (arr[rCoord,cCoord -1] == 1); 
+			} 
+			else if (orientationState == orientation.vertical)
+			{
+				return (arr[rCoord,cCoord] == 1);
 			} 
 			else
 			{
@@ -156,4 +162,6 @@ public class sensor
  * Battery starts off at 100
  * changed the drainRate of the battery for the sensor instead of internally generated. We pass in the drainRate through the sensor's constructor
  * changed sensor to sense the direction of the robot
+ * can sens the bottom grid or above grid
+ * isValid takes in a gridfile in the 2nd file 
  */

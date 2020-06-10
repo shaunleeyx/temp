@@ -1,0 +1,23 @@
+SubRobot uses a simulated multiple inheritance with interfaces since c# doesn't have actual multiple inheritance
+SubRobot uses both submersible and also robot. The changes I had to make for this to happen tend to break encapsulation since I'm changing the state of the class.
+These changes are necessary for the robot to beable to move through the multiple grid files. The polymorphed derived class function wouldn't work unless I made their functions override and made a virtual base of it with no op
+
+Sensor:
+        enum orientation added vertical. I made this change because the robot has to have the ability to sense in the vertical direction which is the gridfile above and below
+        added a second argument in isValid since the sensor has to take in a new grid file everytime it senses vertically. I had to do this because the other option was to make a new sensor each time it senses because its going to be a new grid file every single time which doesn't make any sense
+        sensor needs to have method injection since it has to sense multiple grid files
+
+Actuator:
+         This was given a new direction which is vertical. This would allow the actuator to move between gridfiles.
+         Implemented new function Dive and Climb which helps the robot traverse between textfiles.
+Robot:
+       I had to make the virtual functions of the derived classes: rotatebot and transbot. This was required because polymorphism doesn't allow the base class obj to use derived class functions unless virtual.
+       The virtual functions Rotate,Left,Right,Forward,Back are no op because the base class shouldn't have to do anything if rotate was being called or any of the directional functions.
+
+       setGrid() was needed because this was the only way that the robot could move between levels. its is done through property injection.
+       This allows the robot to change the gridtxt of it. it will still keep the same row and column coordinates. This does break encapsulation but it 
+       was necessary for this to work.
+
+
+
+Summary: Even though this breaks Encapsulation. It was necessary to make SubRobot work because since the robot needs to move between gridfiles it has to keep constantly setting the gridfile to the floor the it descended or ascended. 

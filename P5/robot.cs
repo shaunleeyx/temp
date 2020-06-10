@@ -27,7 +27,7 @@
  **/
 
 using System;
-public class robot 
+public class robot : irobot
 {
 	protected orientation orientationState;
     protected enum orientation
@@ -52,22 +52,26 @@ public class robot
 	private String filename;
 	protected int[,] grid;
 	private const int SIZE = 11;
+	private const int maxDrain = 20;
+	private const int minDrain = 0;
 	private bool state; 
 	/*
 	 *Precondition:string and double
 	 *Postcondition:filename is str and 2d array copies the file,double sets the drainRate for the battery for the sensor
 	 */
-	public robot(string str, double drainRate)
+	public robot(string str)
 	{ 
+		Random random = new Random();
+		double drainRate = random.Next(minDrain,maxDrain);
 		if (str == null) throw new ArgumentNullException("invalid file");
         orientationState = orientation.Up; 
 		filename = str;
 		grid = new int[SIZE, SIZE];
 		count = 0;
-		upSensor = new sensor(drainRate,0,grid);
-		downSensor = new sensor(drainRate,1,grid);
-		rightSensor = new sensor(drainRate,2,grid);
-		leftSensor = new sensor(drainRate,3,grid);
+		upSensor = new sensor(drainRate,0);
+		downSensor = new sensor(drainRate,1);
+		rightSensor = new sensor(drainRate,2);
+		leftSensor = new sensor(drainRate,3);
 		nAct = new actuator(0);
 		sAct = new actuator(1);
 		eAct = new actuator(2);
@@ -96,7 +100,7 @@ public class robot
 	public bool isValid()
 	{
 		
-		return (upSensor.isValid(rCoord,cCoord) && downSensor.isValid(rCoord,cCoord) && rightSensor.isValid(rCoord,cCoord) && leftSensor.isValid(rCoord,cCoord));
+		return (upSensor.isValid(rCoord,cCoord,grid) && downSensor.isValid(rCoord,cCoord,grid) && rightSensor.isValid(rCoord,cCoord,grid) && leftSensor.isValid(rCoord,cCoord,grid));
 	}
 	//TODO document this
 
@@ -104,6 +108,7 @@ public class robot
 	{
 		return cCoord;
 	}
+
 	
 	public int getRow()
 	{
@@ -113,9 +118,10 @@ public class robot
 	 *Precondition: None
 	 *Postcondition: keeps moving robot up 
 	 */
+
 	public virtual void Move()
 	{
-		while(upSensor.isValid(rCoord,cCoord))
+		while(upSensor.isValid(rCoord,cCoord,grid))
 		{
 			nAct.MoveForward(ref rCoord, ref cCoord);
 		}
@@ -127,7 +133,7 @@ public class robot
 	 */
 	public virtual void MoveOne()
 	{
-		if(upSensor.isValid(rCoord,cCoord))
+		if(upSensor.isValid(rCoord,cCoord,grid))
 		{
 			nAct.MoveForward(ref rCoord, ref cCoord);
 		}
@@ -156,6 +162,31 @@ public class robot
 		leftSensor.Recharge(); 
 	}
 
+	public void setGrid(int[,] input)
+	{
+		grid = input;
+	}
+
+	public virtual void Forward()
+	{
+
+	}
+	public virtual void Left()
+	{
+
+	}
+	public virtual void Right()
+	{
+
+	}
+	public virtual void Back()
+	{
+
+	}
+	public virtual void Rotate()
+	{
+
+	}
 }
 
 //
@@ -174,4 +205,7 @@ public class robot
  * throws exception if argument is null for constructor
  * initialized enum for direction in robot
  * changed the way 2darr gets processed from the file b/c c#
+ * had to implement virtual methods for the functions of the derived classes for polymorphism to work
+ * virtual functions are NOP
+ * used property injection for grid 
  */

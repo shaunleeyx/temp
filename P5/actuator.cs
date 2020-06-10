@@ -52,6 +52,30 @@ public class actuator
 				break;
 		}
 	}
+     /*
+      *PreCondition: int
+      *PostCondition: returns a incremented value of argument
+      */
+	public int MoveDown(int level)
+	{
+		if(Direction == 4)
+		{ 
+			level++;
+		}
+		return level;
+	}
+     /*
+      *PreCondition: int
+      *PostCondition: returns a decremented value of argument
+      */
+	public int MoveUp(int level)
+	{
+		if(Direction == 4)
+		{
+			level--;
+		} 
+		return level;
+	}
 
 	/*
 	 *Precondition:state is intialized
@@ -68,7 +92,7 @@ public class actuator
 	 */
 	public actuator(int dir)
 	{
-	Direction = dir; //dir: 0 = north, 1 = south, 2 = east, 3 = west
+	Direction = dir; //dir: 0 = north, 1 = south, 2 = east, 3 = west 4 = up/down
 	state = true;
 	}
 }
@@ -77,4 +101,5 @@ public class actuator
  * Direction of actuator is assigned throguh the constructor of actuator's argument
  * actuator is always true no matter what
  * isPoweredUp returns the state of the object for actuator
+ * can move down or up a grid with Dive and Climb
  */
